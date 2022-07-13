@@ -75,3 +75,29 @@
 `git rebase -i <commitHash>` 合并提交，从当前合并到commitHash，commitHash不参与。或者修改提交
 
 `git merge --squash <branchName>` 将指定分支的所有提交合并成一个提交并导入到当前分支
+
+### 问题案例
+
+1.刚刚提交的文件不完整，想要补充
+
+补充完成后，使用 `git commit --amend` 进行提交。
+
+2.想要修改刚刚的提交信息
+
+使用 `git commit --amend`
+
+3.提交了错误的文件，想要回退
+
+使用 `git reset --hard HEAD～` 回退到上一个提交
+
+4.使用reset回退了怎么还原
+
+使用 `git reset --hard ORIG_HEAD` 还原
+
+5.想要将前两个提交汇合到一起，变成一个提交
+
+使用 `git rebase -i <commitHash>` 将想要汇合的提交的pick都改为s,注意这里的commitHash不包含在编辑的文件内，可以理解为这是一个坐标
+
+6.想要修改某一个提交
+
+使用 `git rebase -i <commitHash>` 将需要修改的提交的pick改为e，修改文件后执行 `git commit --amend` 保存修改，最后执行 `git rebase --continue` 结束修改。注意这里的commitHash不包含在编辑的文件内，可以理解为这是一个坐标
