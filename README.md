@@ -53,3 +53,25 @@
 `git tag` 查看标签
 
 `git tag -n` 查看标签和注解
+
+### 改写提交
+
+`git commit --amend` 修改最近的提交信息，适用于补充漏掉的档案和修改最近提交的注解
+
+`git revert <commitHash>` 取消指定的一次提交，适用于安全地取消过去发布的提交 
+
+`git reset --hard <commitHash>` 遗弃提交，回退到指定的一次提交
+
+`git reset --hard ORIG_HEAD` 取消回退，回到遗弃前
+
+| 模式名称 | HEAD的位置 | 索引 | 工作树 |
+|  ----  | ----  | ----  | ----  |
+| soft | 修改 | 不修改 | 不修改 |
+| mixed(默认) | 修改 | 修改 | 不修改 |
+| hard | 修改 | 修改 | 修改 |
+
+`git cherry-pick <commitHash>` 将指定的分支提交应用于当前分支
+
+`git rebase -i <commitHash>` 合并提交，从当前合并到commitHash，commitHash不参与。或者修改提交
+
+`git merge --squash <branchName>` 将指定分支的所有提交合并成一个提交并导入到当前分支
