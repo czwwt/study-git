@@ -139,3 +139,13 @@
 6.想要修改某一个提交
 
 使用 `git rebase -i <commitHash>` 将需要修改的提交的pick改为e，修改文件后执行 `git commit --amend` 保存修改，最后执行 `git rebase --continue` 结束修改。注意这里的commitHash不包含在编辑的文件内，可以理解为这是一个坐标
+
+7.在当前分支修改了文件，现在想去另一个分支，但是对当前文件还不想commit
+
+使用 `git stash`，注意，这只能暂存已经tracked的文件，即已经提交过的文件
+
+想要暂存新的文件，使用 `git stash --include-untracked` 或者 `git stash save -u`
+
+回到分支后，使用 `git stash list` 查看所有的暂存
+
+使用 `git stash pop [stash]` 恢复文件，省略 [stash] 则恢复所有暂存
